@@ -1,6 +1,7 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveDrawer from "./layouts/Sidebar";
+import { HelmetProvider } from "react-helmet-async";
 
 const defaultTheme = createTheme({
   palette: {
@@ -25,12 +26,15 @@ const defaultTheme = createTheme({
     },
   },
 });
+const helmetContext = {};
 
 const App = () => (
-  <ThemeProvider theme={defaultTheme}>
-    <CssBaseline />
-    <ResponsiveDrawer />
-  </ThemeProvider>
+  <HelmetProvider context={helmetContext}>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <ResponsiveDrawer />
+    </ThemeProvider>
+  </HelmetProvider>
 );
 
 export default App;

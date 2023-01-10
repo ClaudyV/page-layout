@@ -77,6 +77,7 @@ export default function ResponsiveDrawer(props: Props) {
                       justifyContent={"center"}
                       alignContent={"center"}
                       alignItems={"center"}
+                      position={"relative"}
                     >
                       <Box
                         component="img"
@@ -90,6 +91,20 @@ export default function ResponsiveDrawer(props: Props) {
                         width={"100%"}
                         textAlign={"center"}
                       />
+                      {location.pathname.replace("/", "") !== to &&
+                      to === "tags" ? (
+                        <Box
+                          component="img"
+                          alt="The house from the offer."
+                          src={"assets/blue-point.svg"}
+                          position={"absolute"}
+                          textAlign={"center"}
+                          bottom={'2rem'}
+                          left={'2rem'}
+                        />
+                      ) : (
+                        <></>
+                      )}
                     </Box>
 
                     <Box>
