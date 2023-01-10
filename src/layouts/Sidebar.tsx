@@ -6,8 +6,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 
 const drawerWidth = 80;
 
@@ -31,6 +29,8 @@ export default function ResponsiveDrawer(props: Props) {
       to: "tags",
     },
   ];
+
+  // Sidebar Elements
   const drawer = (
     <div>
       <List
@@ -99,8 +99,8 @@ export default function ResponsiveDrawer(props: Props) {
                           src={"assets/blue-point.svg"}
                           position={"absolute"}
                           textAlign={"center"}
-                          bottom={'2rem'}
-                          left={'2rem'}
+                          bottom={"2rem"}
+                          left={"2rem"}
                         />
                       ) : (
                         <></>
@@ -126,27 +126,9 @@ export default function ResponsiveDrawer(props: Props) {
   return (
     <Box className="wrapper" sx={{ display: "flex" }}>
       <CssBaseline />
-      <Box
-        sx={{
-          fontWeight: 700,
-          fontSize: "1.2rem",
-          lineHeight: "0.938rem",
-          letterSpacing: "-0.05em",
-          background: "linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)",
-          backgroundClip: "text",
-          textFillColor: "transparent",
-          paddingTop: "1.813rem",
-          paddingBottom: "2.875rem",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
-          mr: 2,
-          display: { sm: "none" },
-        }}
-        onClick={handleDrawerToggle}
-      >
-        LOGO
-      </Box>
+      
 
+      {/* Sidebar Section */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -188,7 +170,6 @@ export default function ResponsiveDrawer(props: Props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           display: "flex",
           flexDirection: "column",

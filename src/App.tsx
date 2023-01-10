@@ -24,6 +24,22 @@ const defaultTheme = createTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "3px solid rgba(255, 255, 255, 0.5)",
+            borderRadius: "6px",
+          },
+          "&.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "3px solid #FF9B33 !important",
+              borderRadius: "6px",
+            },
+          },
+        },
+      },
+    },
   },
 });
 const helmetContext = {};

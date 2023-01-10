@@ -21,10 +21,67 @@ code {
   color: transparent;
 }
 
+.search-input {
+  border-radius: 6px !important;
+  border-color: #ffffff !important;
+}
+
+.homepage-wrapper {
+  padding-left: 8.125rem;
+}
+
+.homepage-left-section {
+  width: 60%;
+}
+
+.homepage-right-section {
+  width: 40%;
+}
+
+.search-field {
+  padding-top: 3.375rem;
+}
+
+.navbar-mobile {
+  display: none;
+}
 
 @media screen and (max-width: 600px) {
-  .wrapper{
+  .wrapper {
     display: flex;
     flex-direction: column;
+  }
+
+  .homepage-wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .search-field {
+    padding-top: 0rem;
+  }
+
+  .homepage-right-section {
+    display: none;
+  }
+
+  .navbar-mobile {
+    display: flex;
+    background: rgba(24, 24, 24, 0.2);
+    box-shadow: inset 0px 0.5px 0px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(27.1828px);
+    height: 4.125rem;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    bottom: 0;
+    justify-content: center;
+    gap: 3.625rem;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .homepage-left-section {
+    width: 100%;
   }
 }
