@@ -29,12 +29,12 @@ const defaultTheme = createTheme({
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
             border: "3px solid rgba(255, 255, 255, 0.5)",
-            borderRadius: "6px",
+            borderRadius: "0.375rem"
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
               border: "3px solid #FF9B33 !important",
-              borderRadius: "6px",
+              borderRadius: "0.375rem"
             },
           },
         },

@@ -32,6 +32,7 @@ code {
 
 .homepage-left-section {
   width: 60%;
+  height: 100vh;
 }
 
 .homepage-right-section {
@@ -46,6 +47,32 @@ code {
   display: none;
 }
 
+.custom-button {
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  width: 100%;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 100%;
+  color: #121212;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.custom-button:hover {
+  background: #121212;
+  border: 1px solid #ffffff;
+  border-radius: 0.25rem;
+  color: #ffffff;
+}
+
+.search-section {
+  padding-bottom: 5.438rem;
+  width: 50%;
+}
+
 @media screen and (max-width: 600px) {
   .wrapper {
     display: flex;
@@ -54,7 +81,7 @@ code {
 
   .homepage-wrapper {
     padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-right: 1.5rem !important;
   }
 
   .search-field {
@@ -78,10 +105,32 @@ code {
     justify-content: center;
     gap: 3.625rem;
   }
+
+  .mobile-divider {
+    display: none;
+  }
+
+  .homepage-left-section {
+    width: 100%;
+    height: calc(100vh - 138px);
+  }
+
+  .search-section {
+    padding-bottom: 1.5rem;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 1440px) {
   .homepage-left-section {
     width: 100%;
+  }
+
+  .homepage-right-section {
+    display: none;
+  }
+
+  .homepage-wrapper {
+    padding-right: 8.125rem;
   }
 }

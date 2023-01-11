@@ -16,6 +16,7 @@ const NavBar = () => {
     <Box className="navbar-mobile" component={"nav"}>
       {itemslist.map((item, index) => (
         <Box
+          key={index}
           component="img"
           alt="The house from the offer."
           src={
