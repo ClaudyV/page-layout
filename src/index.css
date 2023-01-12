@@ -37,6 +37,7 @@ code {
 
 .homepage-right-section {
   width: 40%;
+  background: #1b1b1b;
 }
 
 .search-field {
@@ -71,6 +72,108 @@ code {
 .search-section {
   padding-bottom: 5.438rem;
   width: 50%;
+}
+
+.tab-section {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 0.813rem;
+  cursor: pointer;
+}
+
+.active-tab {
+  border-bottom: 2px solid #ffffff;
+}
+
+.inactive-tab {
+  border-bottom: 2px solid #1f1f1f;
+}
+
+.active-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #ffffff;
+}
+
+.inactive-title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.15px;
+  color: #929292;
+  opacity: 0.87;
+}
+
+.follow-button {
+  padding: 0.5rem 0.625rem;
+  border: 1px solid #ffffff;
+  background: #121212;
+  border-radius: 1.25rem;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.following-button {
+  padding: 0.5rem 0.625rem;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  color: #121212;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.follow-button:hover {
+  color: #121212;
+  background: #ffffff;
+}
+
+.following-button:hover {
+  color: #ffffff;
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 7px solid transparent !important;
+  border-radius: 1rem !important;
+  background-clip: padding-box !important;
+}
+
+::-webkit-scrollbar {
+  width: 1.2rem !important;
+}
+
+.result-wrapper {
+  padding-top: 5.75rem;
+  padding-left: 8.125rem;
+}
+
+.result-top {
+  width: 100%;
+  /* padding-left: 8.125rem; */
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 1.546rem;
+  padding-right: 1.546rem;
+}
+
+.results-title {
+  font-weight: 400 !important;
+  font-size: 1.875rem !important;
+  line-height: 150% !important;
+  letter-spacing: 0.25px !important;
 }
 
 @media screen and (max-width: 600px) {

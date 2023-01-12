@@ -84,8 +84,8 @@ export default function ResponsiveDrawer(props: Props) {
                         alt="The house from the offer."
                         src={
                           location.pathname.replace("/", "") === to
-                            ? "assets/active-element.svg"
-                            : "assets/inactive-element.svg"
+                            ? "assets/img/active-element.svg"
+                            : "assets/img/inactive-element.svg"
                         }
                         maxWidth={"2rem"}
                         width={"100%"}
@@ -96,7 +96,7 @@ export default function ResponsiveDrawer(props: Props) {
                         <Box
                           component="img"
                           alt="The house from the offer."
-                          src={"assets/blue-point.svg"}
+                          src={"assets/img/blue-point.svg"}
                           position={"absolute"}
                           textAlign={"center"}
                           bottom={"2rem"}
@@ -126,7 +126,6 @@ export default function ResponsiveDrawer(props: Props) {
   return (
     <Box className="wrapper" sx={{ display: "flex" }}>
       <CssBaseline />
-      
 
       {/* Sidebar Section */}
       <Box
