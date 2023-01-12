@@ -21,8 +21,8 @@ const NavBar = () => {
           alt="The house from the offer."
           src={
             location.pathname.replace("/", "") === item.to
-              ? "assets/active-element.svg"
-              : "assets/inactive-element.svg"
+              ? "assets/img/active-element.svg"
+              : "assets/img/inactive-element.svg"
           }
           maxWidth={"2rem"}
           width={"100%"}
