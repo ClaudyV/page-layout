@@ -1,8 +1,12 @@
 import axios from "axios";
 import { handleError, handleResponse } from "./responseHandler";
 
-// Get all followers
-const getAllFollowersService = async (page: string, pageSize: string) => {
+// Get all followers and Results
+const getAllFollowersAndResultsService = async (
+  page: string,
+  pageSize: string,
+  keyword: string
+) => {
   const headers = {
     Accept: "application/json",
   };
@@ -12,7 +16,9 @@ const getAllFollowersService = async (page: string, pageSize: string) => {
         "/api/users/all?page=" +
         page +
         "&pageSize=" +
-        pageSize,
+        pageSize +
+        "&keyword=" +
+        keyword,
       {
         headers,
       }
@@ -42,6 +48,6 @@ const getAllFollowingService = async (page: string, pageSize: string) => {
 };
 
 export const apiFriends = {
-  getAllFollowersService,
+  getAllFollowersAndResultsService,
   getAllFollowingService,
 };

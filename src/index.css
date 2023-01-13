@@ -167,6 +167,7 @@ code {
   flex-direction: row;
   gap: 1.546rem;
   padding-right: 1.546rem;
+  padding-bottom: 1.5rem;
 }
 
 .results-title {
@@ -174,6 +175,27 @@ code {
   font-size: 1.875rem !important;
   line-height: 150% !important;
   letter-spacing: 0.25px !important;
+}
+
+.single-result-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.result-img {
+  width: 13.688rem;
+  height: 9.125rem;
+}
+
+.result-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2.125rem;
+  column-gap: 1.938rem;
+  height: calc(100vh - 10.063rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 600px) {
@@ -225,6 +247,11 @@ code {
 }
 
 @media screen and (max-width: 1440px) {
+  .result-layout {
+    height: auto;
+    overflow: auto;
+  }
+
   .homepage-left-section {
     width: 100%;
   }
