@@ -5,25 +5,35 @@ import UserSection from "../Ui/UserSection";
 import { apiFriends } from "../../services/users";
 import Skeleton from "@mui/material/Skeleton";
 
-const HomeRightSection = () => {
+const HomeRightSection = ({ getTotalPageSize }: any) => {
   const [tab, setTab] = useState("followers");
   const [allFollowers, setAllFollowers] = useState([]);
   const [allFollowing, setAllFollowing] = useState([]);
   const [followersLoading, setFollowersLoading] = useState(false);
   const [followingLoading, setFollowigLoading] = useState(false);
 
+
   // Get all followers data
-  const getAllFollowers = async (page: string, pageSize: string) => {
+  const getAllFollowers = async (
+    page: string,
+    pageSize: string,
+    keyword: string
+  ) => {
     setAllFollowers([]);
     setFollowersLoading(true);
-    apiFriends.getAllFollowersService(page, pageSize).then((response: any) => {
-      if (response && response.data) {
-        setAllFollowers(response.data);
-      } else {
-        return response;
-      }
-      setFollowersLoading(false);
-    });
+    apiFriends
+      .getAllFollowersAndResultsService(page, pageSize, keyword)
+      .then((response: any) => {
+        if (response && response.data) {
+          if (response.total) {
+            getTotalPageSize(response.total);
+          }
+          setAllFollowers(response.data);
+        } else {
+          return response;
+        }
+        setFollowersLoading(false);
+      });
   };
 
   // Get all following data
@@ -41,7 +51,7 @@ const HomeRightSection = () => {
   };
 
   useEffect(() => {
-    getAllFollowers("1", "20");
+    getAllFollowers("1", "20", "");
     getAllFollowing("1", "20");
   }, []);
 

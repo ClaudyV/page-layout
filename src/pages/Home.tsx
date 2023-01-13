@@ -3,8 +3,10 @@ import { Helmet } from "react-helmet-async";
 import NavBar from "../components/Ui/NavBar";
 import HomeLeftSection from "../components/Home/HomeLeftSection";
 import HomeRightSection from "../components/Home/HomeRightSection";
+import { useState } from "react";
 
 const Home = () => {
+  const [totalPageSize, setTotalPageSize] = useState(1)
   return (
     <>
       <Helmet>
@@ -45,10 +47,10 @@ const Home = () => {
         
       >
         {/* Homepage Left Section */}
-        <HomeLeftSection />
+        <HomeLeftSection totalPageSize={totalPageSize}/>
 
         {/* Homepage Right Section */}
-        <HomeRightSection />
+        <HomeRightSection getTotalPageSize={setTotalPageSize}/>
       </Box>
       <NavBar />
     </>

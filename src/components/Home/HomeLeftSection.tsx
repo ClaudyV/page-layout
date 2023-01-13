@@ -5,6 +5,9 @@ import { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
+import SingleResult from "../Ui/SingleResult";
+import Skeleton from "@mui/material/Skeleton";
+import { apiFriends } from "../../services/users";
 
 // Custom style for Page size Slider
 const PageSize = styled(Slider)({
@@ -47,43 +50,57 @@ const PageSize = styled(Slider)({
   },
 });
 
-const HomeLeftSection = () => {
+const HomeLeftSection = ({ totalPageSize }: any) => {
   const [pageSize, setPageSize] = useState<number>(30);
   const [isResultPage, setIsResultPage] = useState(false);
+  const [allResults, setAllResults] = useState([]);
+  const [resultsLaoding, setResultLoading] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   // Measurements for the Slider
-  const measurements = [
-    {
-      value: 1,
-      label: "1",
-    },
-    {
-      value: 10,
-      label: "10",
-    },
-    {
-      value: 20,
-      label: "20",
-    },
-    {
-      value: 30,
-      label: "30",
-    },
-    {
-      value: 40,
-      label: "40",
-    },
-    {
-      value: 50,
-      label: "50",
-    },
-  ];
+  const measurements = (total: number) => {
+    let sliderNumbers = [];
+    for (let i = 0; i <= total; i += 10) {
+      sliderNumbers.push({ value: i === 0 ? 1 : i });
+    }
+    return sliderNumbers;
+  };
 
   // Event on Slider Change
   const handlePageSizeChange = (event: Event, newValue: number | number[]) => {
     if (typeof newValue === "number") {
       setPageSize(newValue);
     }
+  };
+
+  // Event on keyword typing
+  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  };
+
+  // Search Results
+  const searchResults = () => {
+    getAllResults("1", pageSize.toString(), keyword);
+  };
+
+  // Get all results
+  const getAllResults = async (
+    page: string,
+    pageSize: string,
+    keyword: string
+  ) => {
+    setAllResults([]);
+    setResultLoading(true);
+    apiFriends
+      .getAllFollowersAndResultsService(page, pageSize, keyword)
+      .then((response: any) => {
+        if (response && response.data) {
+          setAllResults(response.data);
+        } else {
+          return response;
+        }
+        setResultLoading(false);
+      });
   };
 
   return (
@@ -125,6 +142,8 @@ const HomeLeftSection = () => {
                     fullWidth
                     placeholder="Keyword"
                     id="fullWidth"
+                    value={keyword}
+                    onChange={handleKeywordChange}
                   />
                 </Box>
               </Box>
@@ -171,25 +190,35 @@ const HomeLeftSection = () => {
                   </Box>
                 </Box>
               </Box>
-              <Box>
-                <PageSize
-                  value={pageSize}
-                  onChange={handlePageSizeChange}
-                  aria-label="pretto slider"
-                  max={50}
-                  min={1}
-                />
 
-                <Box
-                  display={"flex"}
-                  flexDirection={"row"}
-                  justifyContent={"space-between"}
-                >
-                  {measurements.map((item, index) => (
-                    <Typography key={index}>{item.value}</Typography>
-                  ))}
+              {totalPageSize === 1 ? (
+                <Skeleton
+                  variant="rounded"
+                  width={"100%"}
+                  height={"4.044rem"}
+                />
+              ) : (
+                <Box>
+                  <PageSize
+                    value={pageSize}
+                    onChange={handlePageSizeChange}
+                    aria-label="pretto slider"
+                    max={totalPageSize}
+                    min={1}
+                  />
+
+                  <Box
+                    display={"flex"}
+                    flexDirection={"row"}
+                    justifyContent={"space-between"}
+                  >
+                    {measurements(totalPageSize).map((item: any, index) => (
+                      <Typography key={index}>{item.value}</Typography>
+                    ))}
+                  </Box>
                 </Box>
-              </Box>
+              )}
+
               <Box className="mobile-divider">
                 <Divider
                   sx={{ border: "1px solid rgba(255, 255, 255, 0.1)" }}
@@ -202,7 +231,10 @@ const HomeLeftSection = () => {
             <Box
               component={"button"}
               className={"custom-button"}
-              onClick={() => setIsResultPage(true)}
+              onClick={() => {
+                setIsResultPage(true);
+                searchResults();
+              }}
             >
               Search
             </Box>
@@ -212,14 +244,17 @@ const HomeLeftSection = () => {
         <>
           <Box className="homepage-left-section result-wrapper">
             <Box className="result-top" onClick={() => setIsResultPage(false)}>
-                <Box display={'flex'} alignItems={'center'}>
+              <Box display={"flex"} alignItems={"center"}>
                 <img src="/assets/img/arrow-back.svg" />
-                </Box>
-                <Box>
-                    <Typography className="results-title">
-                        Results
-                    </Typography>
-                </Box>
+              </Box>
+              <Box>
+                <Typography className="results-title">Results</Typography>
+              </Box>
+            </Box>
+            <Box className="result-layout">
+              {allResults.map((result, index) => (
+                <SingleResult key={index} result={result} />
+              ))}
             </Box>
           </Box>
         </>
