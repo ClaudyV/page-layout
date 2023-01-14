@@ -251,11 +251,38 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                 <Typography className="results-title">Results</Typography>
               </Box>
             </Box>
-            <Box className="result-layout">
-              {allResults.map((result, index) => (
-                <SingleResult key={index} result={result} />
-              ))}
-            </Box>
+            {!resultsLaoding ? (
+              <Box
+                className={
+                  allResults.length > 9
+                    ? "result-overflow result-layout"
+                    : "result-layout"
+                }
+              >
+                {allResults.map((result, index) => (
+                  <SingleResult key={index} result={result} />
+                ))}
+              </Box>
+            ) : (
+              <>
+                <Box className="result-layout">
+                  {Array.from(new Array(9)).map((item, index) => (
+                    <Box key={index}>
+                      <Skeleton
+                     
+                        variant="rectangular"
+                        width={"13.688rem"}
+                        height={"9.125rem"}
+                      />{" "}
+                      <Box sx={{ pt: 0.5 }}>
+                        <Skeleton width={"13.688rem"}/>
+                        <Skeleton width="60%" />
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
+              </>
+            )}
           </Box>
         </>
       )}

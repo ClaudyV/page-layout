@@ -156,16 +156,16 @@ code {
 
 .result-wrapper {
   padding-top: 5.75rem;
-  padding-left: 8.125rem;
+  /* padding-left: 8.125rem; */
 }
 
 .result-top {
   width: 100%;
-  /* padding-left: 8.125rem; */
+  padding-left: 5.781rem;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  gap: 1.546rem;
+  gap: 1.983rem;
   padding-right: 1.546rem;
   padding-bottom: 1.5rem;
 }
@@ -193,9 +193,13 @@ code {
   grid-template-columns: repeat(3, 1fr);
   row-gap: 2.125rem;
   column-gap: 1.938rem;
-  height: calc(100vh - 10.063rem);
   overflow-y: scroll;
   overflow-x: hidden;
+  padding-left: 8.188rem;
+}
+
+.result-overflow {
+  height: calc(100vh - 10.063rem);
 }
 
 @media screen and (max-width: 600px) {
@@ -262,5 +266,9 @@ code {
 
   .homepage-wrapper {
     padding-right: 8.125rem;
+  }
+
+  .result-overflow {
+    height: auto !important;
   }
 }
