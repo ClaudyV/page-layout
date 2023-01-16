@@ -74,6 +74,11 @@ code {
   width: 50%;
 }
 
+.more-section {
+  padding-bottom: 2.438rem;
+  width: 50%;
+}
+
 .tab-section {
   display: flex;
   flex-direction: row;
@@ -189,17 +194,23 @@ code {
 }
 
 .result-layout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 2.125rem;
-  column-gap: 1.938rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.438rem;
   overflow-y: scroll;
   overflow-x: hidden;
   padding-left: 8.188rem;
 }
 
 .result-overflow {
-  height: calc(100vh - 10.063rem);
+  /* height: calc(100vh - 10.063rem); */
+}
+
+.result-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2.125rem;
+  column-gap: 1.938rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -246,6 +257,11 @@ code {
 
   .search-section {
     padding-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .more-section{
+    padding-bottom: 1rem;
     width: 100%;
   }
 }

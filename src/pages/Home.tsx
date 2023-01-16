@@ -50,7 +50,7 @@ const Home = () => {
         <HomeLeftSection totalPageSize={totalPageSize}/>
 
         {/* Homepage Right Section */}
-        <HomeRightSection getTotalPageSize={setTotalPageSize}/>
+        <HomeRightSection setTotalPageSize={setTotalPageSize}/>
       </Box>
       <NavBar />
     </>

@@ -5,7 +5,7 @@ import UserSection from "../Ui/UserSection";
 import { apiFriends } from "../../services/users";
 import Skeleton from "@mui/material/Skeleton";
 
-const HomeRightSection = ({ getTotalPageSize }: any) => {
+const HomeRightSection = ({ setTotalPageSize }: any) => {
   const [tab, setTab] = useState("followers");
   const [allFollowers, setAllFollowers] = useState([]);
   const [allFollowing, setAllFollowing] = useState([]);
@@ -26,7 +26,7 @@ const HomeRightSection = ({ getTotalPageSize }: any) => {
       .then((response: any) => {
         if (response && response.data) {
           if (response.total) {
-            getTotalPageSize(response.total);
+            setTotalPageSize(response.total);
           }
           setAllFollowers(response.data);
         } else {
@@ -92,10 +92,10 @@ const HomeRightSection = ({ getTotalPageSize }: any) => {
         display={"flex"}
         flexDirection={"column"}
         gap={"1.313rem"}
-        height={"calc(100vh - 4.437rem)"}
-        sx={{
-          overflowY: "scroll",
-        }}
+        //height={"calc(100vh - 4.437rem)"}
+        // sx={{
+        //   overflowY: "scroll",
+        // }}
       >
         {tab === "followers" ? (
           <>
