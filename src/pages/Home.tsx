@@ -6,13 +6,12 @@ import HomeRightSection from "../components/Home/HomeRightSection";
 import { useState } from "react";
 
 const Home = () => {
-  const [totalPageSize, setTotalPageSize] = useState(1)
+  const [totalPageSize, setTotalPageSize] = useState(1);
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Homepage</title>
-        <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
       {/* Logo */}
@@ -40,17 +39,12 @@ const Home = () => {
       </Box>
 
       {/* Homepage Wrapper */}
-      <Box
-        display={"flex"}
-        flexDirection={"row"}
-        gap={"8.125rem"}
-        
-      >
+      <Box display={"flex"} flexDirection={"row"} gap={"8.125rem"}>
         {/* Homepage Left Section */}
-        <HomeLeftSection totalPageSize={totalPageSize}/>
+        <HomeLeftSection totalPageSize={totalPageSize} />
 
         {/* Homepage Right Section */}
-        <HomeRightSection getTotalPageSize={setTotalPageSize}/>
+        <HomeRightSection setTotalPageSize={setTotalPageSize} />
       </Box>
       <NavBar />
     </>

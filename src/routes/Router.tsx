@@ -11,10 +11,12 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "results",
-        element: <Results />,
+        children: [
+          {
+            path: "/",
+            element: <Results setIsResultPage={undefined} />,
+          },
+        ],
       },
       {
         path: "tags",

@@ -3,11 +3,11 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { makeStyles, styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import SingleResult from "../Ui/SingleResult";
 import Skeleton from "@mui/material/Skeleton";
-import { apiFriends } from "../../services/users";
+import { useNavigate } from "react-router-dom";
+import Results from "../../pages/Results";
 
 // Custom style for Page size Slider
 const PageSize = styled(Slider)({
@@ -51,10 +51,9 @@ const PageSize = styled(Slider)({
 });
 
 const HomeLeftSection = ({ totalPageSize }: any) => {
+  const navigate = useNavigate();
   const [pageSize, setPageSize] = useState<number>(30);
   const [isResultPage, setIsResultPage] = useState(false);
-  const [allResults, setAllResults] = useState([]);
-  const [resultsLaoding, setResultLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
 
   // Measurements for the Slider
@@ -80,27 +79,9 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
 
   // Search Results
   const searchResults = () => {
-    getAllResults("1", pageSize.toString(), keyword);
-  };
-
-  // Get all results
-  const getAllResults = async (
-    page: string,
-    pageSize: string,
-    keyword: string
-  ) => {
-    setAllResults([]);
-    setResultLoading(true);
-    apiFriends
-      .getAllFollowersAndResultsService(page, pageSize, keyword)
-      .then((response: any) => {
-        if (response && response.data) {
-          setAllResults(response.data);
-        } else {
-          return response;
-        }
-        setResultLoading(false);
-      });
+    navigate(`/?page=1&keyword=${keyword}&pageSize=${pageSize}`, {
+      state: { keyword, pageSize },
+    });
   };
 
   return (
@@ -136,6 +117,11 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                     sx={{
                       "&:hover fieldset": {
                         borderColor: "rgba(255, 255, 255, 0.5) !important",
+                      },
+                      "&:-webkit-autofill": {
+                        WebkitBoxShadow: "0 0 0 1000px red inset",
+                        backgroundColor: "#fafafa !important;",
+                        backgroundClip: "content-box !important",
                       },
                     }}
                     className="search-input"
@@ -241,23 +227,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
           </Box>
         </Box>
       ) : (
-        <>
-          <Box className="homepage-left-section result-wrapper">
-            <Box className="result-top" onClick={() => setIsResultPage(false)}>
-              <Box display={"flex"} alignItems={"center"}>
-                <img src="/assets/img/arrow-back.svg" />
-              </Box>
-              <Box>
-                <Typography className="results-title">Results</Typography>
-              </Box>
-            </Box>
-            <Box className="result-layout">
-              {allResults.map((result, index) => (
-                <SingleResult key={index} result={result} />
-              ))}
-            </Box>
-          </Box>
-        </>
+        <Results setIsResultPage={setIsResultPage} />
       )}
     </>
   );

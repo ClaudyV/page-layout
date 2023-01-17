@@ -5,7 +5,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 const drawerWidth = 80;
 
@@ -20,13 +20,11 @@ export default function ResponsiveDrawer(props: Props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const navigate = useNavigate();
   const itemslist = [
-    { title: "Home", onclick: () => navigate("/"), to: "" },
+    { title: "Home",to: "/" },
     {
       title: "Tags",
-      onclick: () => navigate("/tags"),
-      to: "tags",
+      to: "/tags",
     },
   ];
 
@@ -81,26 +79,26 @@ export default function ResponsiveDrawer(props: Props) {
                     >
                       <Box
                         component="img"
-                        alt="The house from the offer."
+                        alt="Active Element"
                         src={
-                          location.pathname.replace("/", "") === to
+                          location.pathname === to
                             ? "assets/img/active-element.svg"
                             : "assets/img/inactive-element.svg"
                         }
-                        maxWidth={"2rem"}
+                        maxWidth={"1.5rem"}
                         width={"100%"}
                         textAlign={"center"}
                       />
-                      {location.pathname.replace("/", "") !== to &&
-                      to === "tags" ? (
+                      {location.pathname !== to &&
+                      to === "/tags" ? (
                         <Box
                           component="img"
-                          alt="The house from the offer."
+                          alt="Blue point"
                           src={"assets/img/blue-point.svg"}
                           position={"absolute"}
                           textAlign={"center"}
-                          bottom={"2rem"}
-                          left={"2rem"}
+                          bottom={"1.65rem"}
+                          left={"1.65rem"}
                         />
                       ) : (
                         <></>

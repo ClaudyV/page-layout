@@ -31,12 +31,12 @@ code {
 }
 
 .homepage-left-section {
-  width: 60%;
+  width: 63%;
   height: 100vh;
 }
 
 .homepage-right-section {
-  width: 40%;
+  width: 37%;
   background: #1b1b1b;
 }
 
@@ -71,6 +71,11 @@ code {
 
 .search-section {
   padding-bottom: 5.438rem;
+  width: 50%;
+}
+
+.more-section {
+  padding-bottom: 2.438rem;
   width: 50%;
 }
 
@@ -156,16 +161,16 @@ code {
 
 .result-wrapper {
   padding-top: 5.75rem;
-  padding-left: 8.125rem;
+  /* padding-left: 8.125rem; */
 }
 
 .result-top {
   width: 100%;
-  /* padding-left: 8.125rem; */
+  padding-left: 5.781rem;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  gap: 1.546rem;
+  gap: 1.983rem;
   padding-right: 1.546rem;
   padding-bottom: 1.5rem;
 }
@@ -189,13 +194,65 @@ code {
 }
 
 .result-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3.1rem;
+  padding-left: 8.188rem;
+}
+
+.result-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  row-gap: 2.125rem;
-  column-gap: 1.938rem;
-  height: calc(100vh - 10.063rem);
-  overflow-y: scroll;
-  overflow-x: hidden;
+  column-gap: 2.125rem;
+  row-gap: 3.125rem;
+}
+
+.single-result-wrapper:nth-child(6n + 1),
+.single-result-wrapper:nth-child(6n + 2),
+.single-result-wrapper:nth-child(6n + 3) {
+  margin-bottom: -0.5935rem;
+}
+
+.single-result-wrapper:nth-child(6n + 4),
+.single-result-wrapper:nth-child(6n + 5),
+.single-result-wrapper:nth-child(6n + 6) {
+  margin-top: -0.5935rem;
+}
+
+.tags {
+  width: 100%;
+  padding: 5rem 0;
+}
+
+.tags-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  max-width: 52.875rem;
+  gap: 1.5rem;
+}
+
+.tags-title {
+  font-weight: 400 !important;
+  font-size: 1.875rem !important;
+  line-height: 150% !important;
+  letter-spacing: 0.016rem !important;
+}
+
+.tags-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 2.25rem;
+  column-gap: 1.5rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+    -webkit-text-fill-color: #fff !important;
+    font-family: 'Ubuntu' !important;
 }
 
 @media screen and (max-width: 600px) {
@@ -244,9 +301,14 @@ code {
     padding-bottom: 1.5rem;
     width: 100%;
   }
+
+  .more-section {
+    padding-bottom: 1rem;
+    width: 100%;
+  }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1439px) {
   .result-layout {
     height: auto;
     overflow: auto;
@@ -262,5 +324,9 @@ code {
 
   .homepage-wrapper {
     padding-right: 8.125rem;
+  }
+
+  .result-overflow {
+    height: auto !important;
   }
 }
