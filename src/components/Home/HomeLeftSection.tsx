@@ -3,7 +3,7 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { makeStyles, styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
@@ -117,6 +117,11 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                     sx={{
                       "&:hover fieldset": {
                         borderColor: "rgba(255, 255, 255, 0.5) !important",
+                      },
+                      "&:-webkit-autofill": {
+                        WebkitBoxShadow: "0 0 0 1000px red inset",
+                        backgroundColor: "#fafafa !important;",
+                        backgroundClip: "content-box !important",
                       },
                     }}
                     className="search-input"

@@ -18,13 +18,13 @@ const NavBar = () => {
         <Box
           key={index}
           component="img"
-          alt="The house from the offer."
+          alt={item.title}
           src={
             location.pathname.replace("/", "") === item.to
               ? "assets/img/active-element.svg"
               : "assets/img/inactive-element.svg"
           }
-          maxWidth={"2rem"}
+          maxWidth={"1.5rem"}
           width={"100%"}
           textAlign={"center"}
           onClick={item.onclick}

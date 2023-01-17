@@ -85,7 +85,7 @@ export default function ResponsiveDrawer(props: Props) {
                             ? "assets/img/active-element.svg"
                             : "assets/img/inactive-element.svg"
                         }
-                        maxWidth={"2rem"}
+                        maxWidth={"1.5rem"}
                         width={"100%"}
                         textAlign={"center"}
                       />
@@ -97,8 +97,8 @@ export default function ResponsiveDrawer(props: Props) {
                           src={"assets/img/blue-point.svg"}
                           position={"absolute"}
                           textAlign={"center"}
-                          bottom={"2rem"}
-                          left={"2rem"}
+                          bottom={"1.65rem"}
+                          left={"1.65rem"}
                         />
                       ) : (
                         <></>

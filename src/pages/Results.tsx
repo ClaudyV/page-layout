@@ -11,7 +11,6 @@ import useInfiniteLoading from "../utils/infiniteLoading";
 const Results = ({ setIsResultPage }: any) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [allResults, setAllResults] = useState([]);
   const [resultsLaoding, setResultLoading] = useState(false);
   const { items, hasMore, loadItems } = useInfiniteLoading({
     getItems: async ({ page }: any) => {
@@ -49,11 +48,7 @@ const Results = ({ setIsResultPage }: any) => {
         </Box>
       </Box>
       {!resultsLaoding ? (
-        <Box
-          className={
-            items.length > 6 ? "result-overflow result-layout" : "result-layout"
-          }
-        >
+        <Box className={"result-layout"}>
           <Box className="result-list">
             {items.map((result: any, index: any) => (
               <SingleResult key={index} result={result} />
