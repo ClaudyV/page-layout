@@ -21,6 +21,10 @@ code {
   color: transparent;
 }
 
+.search-title {
+  font-size: 1.5rem !important;
+}
+
 .search-input {
   border-radius: 6px !important;
   border-color: #ffffff !important;
@@ -72,6 +76,14 @@ code {
 .search-section {
   padding-bottom: 5.438rem;
   width: 50%;
+}
+
+.search-rwd {
+  gap: 1.25rem;
+}
+
+.search-wrapper-rwd {
+  gap: 1.875rem;
 }
 
 .more-section {
@@ -207,6 +219,14 @@ code {
   row-gap: 3.125rem;
 }
 
+.results-perpage-rwd {
+  gap: 1.25rem;
+}
+
+.results-perpagewrapper-rwd {
+  gap: 1.875rem;
+}
+
 .single-result-wrapper:nth-child(6n + 1),
 .single-result-wrapper:nth-child(6n + 2),
 .single-result-wrapper:nth-child(6n + 3) {
@@ -255,7 +275,54 @@ input:-webkit-autofill:active {
     font-family: 'Ubuntu' !important;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 379px){
+  .search-section {
+    padding-bottom: 4.5rem !important;
+  }
+
+  .mobile-divider-rwd {
+    padding-bottom: 1rem;
+  }
+  
+  .navbar-mobile {
+    height: 3.125rem !important;
+  }
+}
+
+@media screen and (max-width: 399px) and (min-width: 380px) {
+  .mobile-divider-rwd {
+    padding-bottom: 2rem;
+  }
+
+  .search-title {
+    font-size: 1rem !important;
+  }
+
+  .search-wrapper-rwd {
+    gap: 1rem !important;
+  }
+
+  .results-perpagewrapper-rwd {
+    gap: 0.1rem !important;
+  }
+
+  .mobile-divider-rwd {
+    padding-bottom: 1rem;
+  }
+
+  .navbar-mobile {
+    height: 3.125rem !important;
+  }
+  
+}
+
+@media only screen and (max-width: 598px) and (min-width: 400px) {
+  .mobile-divider-rwd {
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 599px) {
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -268,6 +335,22 @@ input:-webkit-autofill:active {
 
   .search-field {
     padding-top: 0rem;
+  }
+
+  .search-rwd {
+    gap: 1rem;
+  }
+
+  .search-wrapper-rwd {
+    gap: 1.75rem;
+  }
+
+  .results-perpage-rwd {
+    gap: 1rem;
+  }
+
+  .results-perpagewrapper-rwd {
+    gap: 1.5rem;
   }
 
   .homepage-right-section {
@@ -308,6 +391,13 @@ input:-webkit-autofill:active {
   }
 }
 
+@media only screen and (max-width: 1438px) and (min-width: 600px) {
+  .homepage-wrapper {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}
+
 @media screen and (max-width: 1439px) {
   .result-layout {
     height: auto;
@@ -320,10 +410,6 @@ input:-webkit-autofill:active {
 
   .homepage-right-section {
     display: none;
-  }
-
-  .homepage-wrapper {
-    padding-right: 8.125rem;
   }
 
   .result-overflow {

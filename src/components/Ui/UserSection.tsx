@@ -20,7 +20,6 @@ const UserSection = ({ follower }: any) => {
               height: "2.5rem",
             }}
             alt={follower.name}
-            //variant="square"
             src={follower.avater}
           />
         </Box>
@@ -31,6 +30,8 @@ const UserSection = ({ follower }: any) => {
               fontSize={"1rem"}
               lineHeight={"150%"}
               letterSpacing={"0.009rem"}
+              marginTop={"-0.25px"}
+              marginBottom={"-0.25px"}
             >
               {follower.name}
             </Typography>
@@ -43,7 +44,7 @@ const UserSection = ({ follower }: any) => {
               letterSpacing={"0.016rem"}
               color={"rgba(255, 255, 255, 0.5)"}
             >
-              {follower.username}
+              @{follower.username}
             </Typography>
           </Box>
         </Box>

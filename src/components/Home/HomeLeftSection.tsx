@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 import Results from "../../pages/Results";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 // Custom style for Page size Slider
 const PageSize = styled(Slider)({
@@ -55,6 +56,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
   const [pageSize, setPageSize] = useState<number>(30);
   const [isResultPage, setIsResultPage] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const matches = useMediaQuery('(max-width:399px)');
 
   // Measurements for the Slider
   const measurements = (total: number) => {
@@ -94,15 +96,23 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
           className="homepage-left-section homepage-wrapper"
           justifyContent={"space-between"}
         >
-          <Box display={"flex"} flexDirection={"column"} gap={"1.875rem"}>
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            className={"search-wrapper-rwd"}
+          >
             <Box display={"flex"} flexDirection={"column"} gap={"1.875rem"}>
-              <Box display={"flex"} flexDirection={"column"} gap={"1.25rem"}>
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                className={"search-rwd"}
+              >
                 <Box className="search-field">
                   <Typography
                     variant="h1"
-                    fontSize={"1.5rem"}
                     fontWeight={"400"}
                     lineHeight={"150%"}
+                    className="search-title"
                   >
                     Search
                   </Typography>
@@ -111,7 +121,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                   <TextField
                     InputProps={{
                       style: {
-                        height: "3.73rem",
+                        height: matches ? "3rem" : "3.73rem",
                       },
                     }}
                     sx={{
@@ -140,13 +150,21 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
               </Box>
             </Box>
 
-            <Box display={"flex"} flexDirection={"column"} gap={"1.875rem"}>
-              <Box display={"flex"} flexDirection={"column"} gap={"1.25rem"}>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              className={"results-perpagewrapper-rwd"}
+            >
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                className={"results-perpage-rwd"}
+              >
                 <Box>
                   <Typography
                     sx={{
                       fontWeight: "400",
-                      fontSize: "1.5rem",
+                      fontSize: matches ? "1rem" : "1.5rem",
                       lineHeight: "150%",
                     }}
                   >
@@ -159,7 +177,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                     alignItems={"flex-end"}
                     sx={{
                       fontWeight: "700",
-                      fontSize: "3rem",
+                      fontSize: matches ? "2rem" : "3rem",
                       lineHeight: "150%",
                     }}
                   >
@@ -168,7 +186,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                   <Box
                     display={"flex"}
                     alignItems={"center"}
-                    paddingTop={"1.4rem"}
+                    paddingTop={matches ? "0.6rem" : "1.4rem"}
                   >
                     <Typography>
                       {pageSize === 1 ? "result" : "results"}
@@ -214,6 +232,9 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
           </Box>
 
           <Box className={"search-section"}>
+            <Box className="mobile-divider-rwd">
+              <Divider sx={{ border: "1px solid rgba(255, 255, 255, 0.1)" }} />
+            </Box>
             <Box
               component={"button"}
               className={"custom-button"}
