@@ -6,7 +6,7 @@ const SingleResult = ({result}:any) => {
     <>
       <Box className="single-result-wrapper">
         <Box className="result-img">
-          <img src="/assets/img/dog.svg" loading="lazy" />
+          <img className="result-img-rwd" src="/assets/img/dog.svg" loading="lazy" />
         </Box>
         <Box display={"flex"} flexDirection={"column"}>
           <Box>

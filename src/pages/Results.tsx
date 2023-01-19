@@ -1,14 +1,19 @@
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SingleResult from "../components/Ui/SingleResult";
 import { apiFriends } from "../services/users";
 import { useLocation } from "react-router-dom";
 import useInfiniteLoading from "../utils/infiniteLoading";
+import { useDispatch } from "react-redux";
+import { isShowLogo } from "../features/logoLayout";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Results = ({ setIsResultPage }: any) => {
+  const matches = useMediaQuery("(max-width:599px)");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [resultsLaoding, setResultLoading] = useState(false);
@@ -32,60 +37,77 @@ const Results = ({ setIsResultPage }: any) => {
   });
 
   return (
-    <Box className="homepage-left-section result-wrapper">
-      <Box
-        className="result-top"
-        onClick={() => {
-          setIsResultPage(false);
-          navigate("/");
-        }}
-      >
-        <Box display={"flex"} alignItems={"center"}>
-          <img src="/assets/img/arrow-back.svg" />
-        </Box>
-        <Box>
-          <Typography className="results-title">Results</Typography>
-        </Box>
-      </Box>
-      {!resultsLaoding ? (
-        <Box className={"result-layout"}>
-          <Box className="result-list">
-            {items.map((result: any, index: any) => (
-              <SingleResult key={index} result={result} />
-            ))}
+    <>
+      <Box className="homepage-left-section result-wrapper">
+        <Box className="mobile-top-rwd" onClick={() => {
+            setIsResultPage(false);
+            dispatch(isShowLogo({ showLogo: true }));
+            navigate("/");
+          }}>
+          <Box display={"flex"} alignItems={"center"}>
+            <img className="mobile-top-rwd-img" src="/assets/img/arrow-back.svg" />
           </Box>
-          <Box className={"more-section"}>
-            {hasMore && (
-              <Box
-                component={"button"}
-                className={"custom-button"}
-                onClick={() => loadItems()}
-              >
-                More
-              </Box>
-            )}
+          <Box>
+            <Typography className="mobile-top-rwd-title">Home Page</Typography>
           </Box>
         </Box>
-      ) : (
-        <>
-          <Box className="result-layout result-list">
-            {Array.from(new Array(9)).map((item, index) => (
-              <Box key={index}>
-                <Skeleton
-                  variant="rectangular"
-                  width={"13.688rem"}
-                  height={"9.125rem"}
-                />{" "}
-                <Box sx={{ pt: 0.5 }}>
-                  <Skeleton width={"13.688rem"} />
-                  <Skeleton width="60%" />
+        <Box
+          className="result-top"
+          onClick={() => {
+            setIsResultPage(false);
+            dispatch(isShowLogo({ showLogo: true }));
+            navigate("/");
+          }}
+        >
+          {!matches && (
+            <Box display={"flex"} alignItems={"center"}>
+              <img src="/assets/img/arrow-back.svg" />
+            </Box>
+          )}
+          <Box>
+            <Typography className="results-title">Results</Typography>
+          </Box>
+        </Box>
+        {!resultsLaoding ? (
+          <Box className={"result-layout"}>
+            <Box className="result-list">
+              {items.map((result: any, index: any) => (
+                <SingleResult key={index} result={result} />
+              ))}
+            </Box>
+            <Box className={"more-section"}>
+              {hasMore && (
+                <Box
+                  component={"button"}
+                  className={"custom-button"}
+                  onClick={() => loadItems()}
+                >
+                  More
                 </Box>
-              </Box>
-            ))}
+              )}
+            </Box>
           </Box>
-        </>
-      )}
-    </Box>
+        ) : (
+          <>
+            <Box className="result-layout result-list">
+              {Array.from(new Array(9)).map((item, index) => (
+                <Box key={index}>
+                  <Skeleton
+                    variant="rectangular"
+                    width={"100%"}
+                    height={"9.125rem"}
+                  />{" "}
+                  <Box sx={{ pt: 0.5 }}>
+                    <Skeleton width={"100%"} />
+                    <Skeleton width="60%" />
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          </>
+        )}
+      </Box>
+    </>
   );
 };
 

@@ -4,13 +4,24 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import Router from "./routes/Router";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import layoutReducer from './features/logoLayout'
+
+const store = configureStore({
+  reducer: {
+    layout: layoutReducer
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={Router} />
+    <Provider store={store}>
+      <RouterProvider router={Router} />
+    </Provider>
   </React.StrictMode>
 );
 
