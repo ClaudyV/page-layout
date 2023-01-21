@@ -8,7 +8,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Tags = () => {
-  const [tagsList, setTagsList] = useState([]);
+  const [tagsList, setTagsList]:any = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -17,7 +17,8 @@ const Tags = () => {
     setTagsList([]);
     setLoading(true);
     apiTags.getTagsService().then((response: any) => {
-      if (response) {
+      console.log(tagsList)
+      if (response && Array.isArray(response)) {
         setTagsList(response);
       } else {
         return response;

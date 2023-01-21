@@ -63,7 +63,7 @@ const SingleTags = ({ tag }: any) => {
               color: "#B2B2B2",
             }}
           >
-            {tag.count + ' ' + (tag.count === 1 ? "Result" : "Results")}
+            {tag.count + " " + (tag.count === 1 ? "Result" : "Results")}
           </Typography>
         </Box>
       </Box>

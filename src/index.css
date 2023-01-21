@@ -283,7 +283,18 @@ input:-webkit-autofill:active {
   width: 63%;
 }
 
-@media screen and (max-width: 379px) {
+@media screen and (max-width: 353px) {
+  .tags-list {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .tags-wrapper {
+    max-width: 9.35rem !important;
+  }
+}
+
+@media screen and (max-width: 379px) {  
+
   .search-section {
     padding-bottom: 4.5rem !important;
   }
@@ -459,6 +470,7 @@ input:-webkit-autofill:active {
 
   .tags-wrapper {
     max-width: 20.35rem;
+    padding-bottom: 1.5rem;
   }
 }
 
