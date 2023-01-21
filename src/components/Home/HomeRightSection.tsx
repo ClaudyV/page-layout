@@ -51,8 +51,8 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
   };
 
   useEffect(() => {
-    getAllFollowers("1", "20", "");
-    getAllFollowing("1", "20");
+    getAllFollowers("1", "14", "");
+    getAllFollowing("1", "14");
   }, []);
 
   return (
