@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const layoutSlice = createSlice({
   name: "layout",
-  initialState: { value: { showLogo: true } },
+  initialState: { value: { showResultPage: false } },
   reducers: {
-    isShowLogo: (state, action) => {
+    setResultPage: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
-export const {isShowLogo} = layoutSlice.actions
+export const { setResultPage } = layoutSlice.actions;
 
 export default layoutSlice.reducer;

@@ -8,12 +8,12 @@ import { apiFriends } from "../services/users";
 import { useLocation } from "react-router-dom";
 import useInfiniteLoading from "../utils/infiniteLoading";
 import { useDispatch } from "react-redux";
-import { isShowLogo } from "../features/logoLayout";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { setResultPage } from "../features/resultLayout";
 
-const Results = ({ setIsResultPage }: any) => {
-  const matches = useMediaQuery("(max-width:599px)");
+const Results = () => {
   const dispatch = useDispatch();
+  const matches = useMediaQuery("(max-width:599px)");
   const navigate = useNavigate();
   const location = useLocation();
   const [resultsLaoding, setResultLoading] = useState(false);
@@ -23,14 +23,14 @@ const Results = ({ setIsResultPage }: any) => {
       setResultLoading(true);
       const response = await apiFriends.getAllFollowersAndResultsService(
         page,
-        location.state.pageSize,
-        location.state.keyword
+        location.state?.pageSize ? location.state?.pageSize : "9",
+        location.state?.keyword ? location.state?.keyword : ""
       );
       if (response && response.data) {
         setResultLoading(false);
         return response;
       } else {
-        setResultLoading(false);
+        setResultLoading(true);
         return response;
       }
     },
@@ -39,13 +39,18 @@ const Results = ({ setIsResultPage }: any) => {
   return (
     <>
       <Box className="homepage-left-section result-wrapper">
-        <Box className="mobile-top-rwd" onClick={() => {
-            setIsResultPage(false);
-            dispatch(isShowLogo({ showLogo: true }));
+        <Box
+          className="mobile-top-rwd"
+          onClick={() => {
+            dispatch(setResultPage({ showResultPage: false }));
             navigate("/");
-          }}>
+          }}
+        >
           <Box display={"flex"} alignItems={"center"}>
-            <img className="mobile-top-rwd-img" src="/assets/img/arrow-back.svg" />
+            <img
+              className="mobile-top-rwd-img"
+              src="/assets/img/arrow-back.svg"
+            />
           </Box>
           <Box>
             <Typography className="mobile-top-rwd-title">Home Page</Typography>
@@ -54,8 +59,7 @@ const Results = ({ setIsResultPage }: any) => {
         <Box
           className="result-top"
           onClick={() => {
-            setIsResultPage(false);
-            dispatch(isShowLogo({ showLogo: true }));
+            dispatch(setResultPage({ showResultPage: false }));
             navigate("/");
           }}
         >

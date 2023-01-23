@@ -6,6 +6,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { setResultPage } from "../features/resultLayout";
+import { useDispatch } from "react-redux";
 
 const drawerWidth = 80;
 
@@ -14,6 +16,7 @@ interface Props {
 }
 
 export default function ResponsiveDrawer(props: Props) {
+  const dispatch = useDispatch();
   const location = useLocation();
   const { window }: any = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -21,10 +24,19 @@ export default function ResponsiveDrawer(props: Props) {
     setMobileOpen(!mobileOpen);
   };
   const itemslist = [
-    { title: "Home",to: "/" },
+    {
+      title: "Home",
+      to: "/",
+      onclick: () => {
+        dispatch(setResultPage({ showResultPage: false }));
+      },
+    },
     {
       title: "Tags",
       to: "/tags",
+      onclick: () => {
+        dispatch(setResultPage({ showResultPage: false }));
+      },
     },
   ];
 
@@ -51,7 +63,7 @@ export default function ResponsiveDrawer(props: Props) {
         </Box>
         <Box display={"flex"} flexDirection={"column"} gap={"1.594rem"}>
           {itemslist.map((route: any, index: number) => {
-            const { title, to } = route;
+            const { title, to, onclick } = route;
             return (
               <ListItem
                 key={index}
@@ -59,6 +71,7 @@ export default function ResponsiveDrawer(props: Props) {
                 sx={{ justifyContent: "center", cursor: "pointer" }}
               >
                 <NavLink
+                  onClick={onclick}
                   to={to}
                   className={({ isActive }) =>
                     isActive ? "active" : "inactive"
@@ -89,8 +102,7 @@ export default function ResponsiveDrawer(props: Props) {
                         width={"100%"}
                         textAlign={"center"}
                       />
-                      {location.pathname !== to &&
-                      to === "/tags" ? (
+                      {location.pathname !== to && to === "/tags" ? (
                         <Box
                           component="img"
                           alt="Blue point"

@@ -14,7 +14,7 @@ const Router = createBrowserRouter([
         children: [
           {
             path: "/results",
-            element: <Results setIsResultPage={undefined} />,
+            element: <Results />,
           },
         ],
       },

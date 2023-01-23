@@ -6,7 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./routes/Router";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import layoutReducer from './features/logoLayout'
+import layoutReducer from './features/resultLayout'
 
 const store = configureStore({
   reducer: {
