@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { isShowLogo } from "../../features/logoLayout";
+import { setResultPage } from "../../features/resultLayout";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const NavBar = () => {
       title: "Home",
       onclick: () => {
         navigate("/");
-        dispatch(isShowLogo({ showLogo: true }));
+        dispatch(setResultPage({ showResultPage: false }));
       },
       to: "",
     },
@@ -20,7 +20,7 @@ const NavBar = () => {
       title: "Tags",
       onclick: () => {
         navigate("/tags");
-        dispatch(isShowLogo({ showLogo: false }));
+        dispatch(setResultPage({ showResultPage: false }));
       },
       to: "tags",
     },

@@ -3,15 +3,15 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import Slider from "@mui/material/Slider";
-import { makeStyles, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 import Results from "../../pages/Results";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useDispatch } from "react-redux";
-import { isShowLogo } from "../../features/logoLayout";
+import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../Ui/NavBar";
+import { setResultPage } from "../../features/resultLayout";
 
 // Custom style for Page size Slider
 const PageSize = styled(Slider)({
@@ -55,10 +55,12 @@ const PageSize = styled(Slider)({
 });
 
 const HomeLeftSection = ({ totalPageSize }: any) => {
+  const isShowResultPage = useSelector(
+    (state: any) => state.layout.value.showResultPage
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [pageSize, setPageSize] = useState<number>(30);
-  const [isResultPage, setIsResultPage] = useState(false);
   const [keyword, setKeyword] = useState("");
   const matches = useMediaQuery("(max-width:399px)");
 
@@ -92,9 +94,13 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
 
   return (
     <>
-      {!isResultPage ? (
+      {!isShowResultPage ? (
         <>
-          <Box display={"flex"} flexDirection={"column"} className="homepage-left-section">
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            className="homepage-left-section"
+          >
             <Box
               sx={{
                 fontWeight: 700,
@@ -269,8 +275,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                   component={"button"}
                   className={"custom-button"}
                   onClick={() => {
-                    setIsResultPage(true);
-                    dispatch(isShowLogo({ showLogo: false }));
+                    dispatch(setResultPage({ showResultPage: true }));
                     searchResults();
                   }}
                 >
@@ -282,7 +287,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
           <NavBar />
         </>
       ) : (
-        <Results setIsResultPage={setIsResultPage} />
+        <Results />
       )}
     </>
   );
