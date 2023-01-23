@@ -23,14 +23,14 @@ const Results = () => {
       setResultLoading(true);
       const response = await apiFriends.getAllFollowersAndResultsService(
         page,
-        location.state?.pageSize ? location.state?.pageSize : '9',
-        location.state?.keyword ? location.state?.keyword : ''
+        location.state?.pageSize ? location.state?.pageSize : "9",
+        location.state?.keyword ? location.state?.keyword : ""
       );
       if (response && response.data) {
         setResultLoading(false);
         return response;
       } else {
-        setResultLoading(false);
+        setResultLoading(true);
         return response;
       }
     },

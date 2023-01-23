@@ -8,7 +8,6 @@ import useInfiniteLoading from "../../utils/infiniteLoading";
 
 const HomeRightSection = ({ setTotalPageSize }: any) => {
   const [tab, setTab] = useState("followers");
-  const [allFollowers, setAllFollowers] = useState([]);
   const [allFollowing, setAllFollowing] = useState([]);
   const [followersLoading, setFollowersLoading] = useState(false);
   const [followingLoading, setFollowigLoading] = useState(false);
@@ -19,42 +18,21 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
       setFollowersLoading(true);
       const response = await apiFriends.getAllFollowersAndResultsService(
         page,
-        '14',
-        ''
+        "14",
+        ""
       );
       if (response && response.data) {
         setFollowersLoading(false);
+        if (response.total) {
+          setTotalPageSize(response.total);
+        }
         return response;
       } else {
-        setFollowersLoading(false);
+        setFollowersLoading(true);
         return response;
       }
     },
   });
-
-
-  // Get all followers data
-  const getAllFollowers = async (
-    page: string,
-    pageSize: string,
-    keyword: string
-  ) => {
-    setAllFollowers([]);
-    setFollowersLoading(true);
-    apiFriends
-      .getAllFollowersAndResultsService(page, pageSize, keyword)
-      .then((response: any) => {
-        if (response && response.data) {
-          if (response.total) {
-            setTotalPageSize(response.total);
-          }
-          setAllFollowers(response.data);
-        } else {
-          return response;
-        }
-        setFollowersLoading(false);
-      });
-  };
 
   // Get all following data
   const getAllFollowing = async (page: string, pageSize: string) => {
@@ -71,7 +49,6 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
   };
 
   useEffect(() => {
-    getAllFollowers("1", "14", "");
     getAllFollowing("1", "14");
   }, []);
 
@@ -112,10 +89,6 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
         display={"flex"}
         flexDirection={"column"}
         gap={"1.313rem"}
-        //height={"calc(100vh - 4.437rem)"}
-        // sx={{
-        //   overflowY: "scroll",
-        // }}
       >
         {tab === "followers" ? (
           <>
@@ -137,13 +110,15 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
                 ))}
               </>
             )}
-            <Box
-                  component={"button"}
-                  className={"custom-button"}
-                  onClick={() => loadItems()}
-                >
-                  More
-                </Box>
+            {hasMore && (
+              <Box
+                component={"button"}
+                className={"custom-button"}
+                onClick={() => loadItems()}
+              >
+                More
+              </Box>
+            )}
           </>
         ) : (
           <>

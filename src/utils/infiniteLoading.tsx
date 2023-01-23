@@ -12,7 +12,9 @@ const useInfiniteLoading = (props: any) => {
       page: pageToLoad ? pageToLoad : 1,
     });
     setHasMore(data.totalPages > pageToLoad);
-    setItems((prevItems: any) => [...prevItems, ...data.data]);
+    if(Array.isArray(data.data)){
+      setItems((prevItems: any) => [...prevItems, ...data.data]);
+    }
     setPageToLoad(pageToLoad + 1);
   };
 
