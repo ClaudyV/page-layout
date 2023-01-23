@@ -8,7 +8,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Tags = () => {
-  const [tagsList, setTagsList]:any = useState([]);
+  const [tagsList, setTagsList]: any = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ const Tags = () => {
     setTagsList([]);
     setLoading(true);
     apiTags.getTagsService().then((response: any) => {
-      console.log(tagsList)
       if (response && Array.isArray(response)) {
         setTagsList(response);
       } else {
@@ -38,12 +37,17 @@ const Tags = () => {
         <title>Tags</title>
       </Helmet>
       <Box className="tags">
-      <Box className="mobile-top-rwd" onClick={() => {
-          
+        <Box
+          className="mobile-top-rwd"
+          onClick={() => {
             navigate("/");
-          }}>
+          }}
+        >
           <Box display={"flex"} alignItems={"center"}>
-            <img className="mobile-top-rwd-img" src="/assets/img/arrow-back.svg" />
+            <img
+              className="mobile-top-rwd-img"
+              src="/assets/img/arrow-back.svg"
+            />
           </Box>
           <Box>
             <Typography className="mobile-top-rwd-title">Home Page</Typography>
@@ -72,7 +76,7 @@ const Tags = () => {
                     }}
                   />
                   <Box sx={{ pt: 0.5 }}>
-                    <Skeleton width={"100%"}/>
+                    <Skeleton width={"100%"} />
                     <Skeleton width="60%" />
                   </Box>
                 </Box>
