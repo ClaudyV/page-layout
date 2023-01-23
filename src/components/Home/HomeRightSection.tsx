@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import UserSection from "../Ui/UserSection";
 import { apiFriends } from "../../services/users";
 import Skeleton from "@mui/material/Skeleton";
+import useInfiniteLoading from "../../utils/infiniteLoading";
 
 const HomeRightSection = ({ setTotalPageSize }: any) => {
   const [tab, setTab] = useState("followers");
@@ -11,6 +12,25 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
   const [allFollowing, setAllFollowing] = useState([]);
   const [followersLoading, setFollowersLoading] = useState(false);
   const [followingLoading, setFollowigLoading] = useState(false);
+
+  const { items, hasMore, loadItems } = useInfiniteLoading({
+    getItems: async ({ page }: any) => {
+      /* API call */
+      setFollowersLoading(true);
+      const response = await apiFriends.getAllFollowersAndResultsService(
+        page,
+        '14',
+        ''
+      );
+      if (response && response.data) {
+        setFollowersLoading(false);
+        return response;
+      } else {
+        setFollowersLoading(false);
+        return response;
+      }
+    },
+  });
 
 
   // Get all followers data
@@ -101,7 +121,7 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
           <>
             {!followersLoading ? (
               <>
-                {allFollowers.map((followers: any) => (
+                {items.map((followers: any) => (
                   <UserSection key={followers.id} follower={followers} />
                 ))}
               </>
@@ -117,6 +137,13 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
                 ))}
               </>
             )}
+            <Box
+                  component={"button"}
+                  className={"custom-button"}
+                  onClick={() => loadItems()}
+                >
+                  More
+                </Box>
           </>
         ) : (
           <>
