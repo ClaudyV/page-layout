@@ -1,10 +1,10 @@
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { setResultPage } from "../../features/resultLayout";
+import { useAppDispatch } from "../../hooks/hook";
 
 const NavBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const itemslist = [
@@ -12,7 +12,7 @@ const NavBar = () => {
       title: "Home",
       onclick: () => {
         navigate("/");
-        dispatch(setResultPage({ showResultPage: false }));
+        dispatch(setResultPage(false));
       },
       to: "",
     },
@@ -20,7 +20,7 @@ const NavBar = () => {
       title: "Tags",
       onclick: () => {
         navigate("/tags");
-        dispatch(setResultPage({ showResultPage: false }));
+        dispatch(setResultPage(false));
       },
       to: "tags",
     },

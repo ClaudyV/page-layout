@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { setResultPage } from "../features/resultLayout";
 import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks/hook";
 
 const drawerWidth = 80;
 
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export default function ResponsiveDrawer(props: Props) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const { window }: any = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -28,14 +29,14 @@ export default function ResponsiveDrawer(props: Props) {
       title: "Home",
       to: "/",
       onclick: () => {
-        dispatch(setResultPage({ showResultPage: false }));
+        dispatch(setResultPage(false));
       },
     },
     {
       title: "Tags",
       to: "/tags",
       onclick: () => {
-        dispatch(setResultPage({ showResultPage: false }));
+        dispatch(setResultPage(false));
       },
     },
   ];

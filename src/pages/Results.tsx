@@ -10,9 +10,10 @@ import useInfiniteLoading from "../utils/infiniteLoading";
 import { useDispatch } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { setResultPage } from "../features/resultLayout";
+import { useAppDispatch } from "../hooks/hook";
 
 const Results = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const matches = useMediaQuery("(max-width:599px)");
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +43,7 @@ const Results = () => {
         <Box
           className="mobile-top-rwd"
           onClick={() => {
-            dispatch(setResultPage({ showResultPage: false }));
+            dispatch(setResultPage(false));
             navigate("/");
           }}
         >
@@ -59,7 +60,7 @@ const Results = () => {
         <Box
           className="result-top"
           onClick={() => {
-            dispatch(setResultPage({ showResultPage: false }));
+            dispatch(setResultPage(false));
             navigate("/");
           }}
         >
