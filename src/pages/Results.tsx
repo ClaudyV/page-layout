@@ -8,8 +8,8 @@ import { apiFriends } from "../services/users";
 import { useLocation } from "react-router-dom";
 import useInfiniteLoading from "../utils/infiniteLoading";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { setResultPage } from "../features/resultLayout";
-import { useAppDispatch } from "../hooks/hook";
+import { setResultPage } from "../features/ResultLayout";
+import { useAppDispatch } from "../hooks/Hook";
 
 interface GetItems {
   page: string;
@@ -80,8 +80,8 @@ const Results = () => {
         {!resultsLaoding ? (
           <Box className={"result-layout"}>
             <Box className="result-list">
-              {items.map((result, index) => (
-                <SingleResult key={index} result={result} />
+              {items.map((result) => (
+                <SingleResult key={result.id} result={result} />
               ))}
             </Box>
             <Box className={"more-section"}>

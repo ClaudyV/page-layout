@@ -6,8 +6,9 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { setResultPage } from "../features/resultLayout";
-import { useAppDispatch } from "../hooks/hook";
+import { setResultPage } from "../features/ResultLayout";
+import { useAppDispatch } from "../hooks/Hook";
+
 
 const drawerWidth = 80;
 
@@ -25,6 +26,7 @@ export default function ResponsiveDrawer(props: Props) {
   };
   const itemslist = [
     {
+      id: 1,
       title: "Home",
       to: "/",
       onclick: () => {
@@ -32,6 +34,7 @@ export default function ResponsiveDrawer(props: Props) {
       },
     },
     {
+      id: 2,
       title: "Tags",
       to: "/tags",
       onclick: () => {
@@ -62,11 +65,11 @@ export default function ResponsiveDrawer(props: Props) {
           LOGO
         </Box>
         <Box display={"flex"} flexDirection={"column"} gap={"1.594rem"}>
-          {itemslist.map((route, index) => {
-            const { title, to, onclick } = route;
+          {itemslist.map((route) => {
+            const { id, title, to, onclick } = route;
             return (
               <ListItem
-                key={index}
+                key={id}
                 disablePadding
                 sx={{ justifyContent: "center", cursor: "pointer" }}
               >

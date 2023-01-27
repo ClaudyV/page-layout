@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import Results from "../../pages/Results";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import NavBar from "../Ui/NavBar";
-import { setResultPage } from "../../features/resultLayout";
+import { setResultPage } from "../../features/ResultLayout";
 import { PageSize } from "../Ui/PageSize";
-import { useAppSelector, useAppDispatch } from "../../hooks/hook";
+import { useAppSelector, useAppDispatch } from "../../hooks/Hook";
 
 interface HomeLeftSectionProps {
   totalPageSize: number;
@@ -210,8 +210,8 @@ const HomeLeftSection = ({ totalPageSize }: HomeLeftSectionProps) => {
                         flexDirection={"row"}
                         justifyContent={"space-between"}
                       >
-                        {measurements(totalPageSize).map((item, index) => (
-                          <Typography key={index}>{item.value}</Typography>
+                        {measurements(totalPageSize).map((item) => (
+                          <Typography key={item.value}>{item.value}</Typography>
                         ))}
                       </Box>
                     </Box>

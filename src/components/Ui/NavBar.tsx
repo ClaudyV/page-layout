@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { useLocation, useNavigate } from "react-router-dom";
-import { setResultPage } from "../../features/resultLayout";
-import { useAppDispatch } from "../../hooks/hook";
+import { setResultPage } from "../../features/ResultLayout";
+import { useAppDispatch } from "../../hooks/Hook";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
@@ -9,6 +9,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const itemslist = [
     {
+      id: 1,
       title: "Home",
       onclick: () => {
         navigate("/");
@@ -17,6 +18,7 @@ const NavBar = () => {
       to: "",
     },
     {
+      id: 2,
       title: "Tags",
       onclick: () => {
         navigate("/tags");
@@ -27,9 +29,9 @@ const NavBar = () => {
   ];
   return (
     <Box className="navbar-mobile" component={"nav"}>
-      {itemslist.map((item, index) => (
+      {itemslist.map((item) => (
         <Box
-          key={index}
+          key={item.id}
           component="img"
           alt={item.title}
           src={
