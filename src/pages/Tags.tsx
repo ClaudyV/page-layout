@@ -48,6 +48,7 @@ const Tags = () => {
             <img
               className="mobile-top-rwd-img"
               src="/assets/img/arrow-back.svg"
+              alt="arrow"
             />
           </Box>
           <Box>
