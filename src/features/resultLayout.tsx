@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { RootState } from '../store/store'
-
 // Define a type for the slice state
 export interface ShowResultState {
   value: boolean

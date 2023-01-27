@@ -6,9 +6,10 @@ import SingleTags from "../components/Ui/SingleTags";
 import { apiTags } from "../services/tags";
 import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
+import { Tag } from "../shared/interfaces/tags.interface";
 
 const Tags = () => {
-  const [tagsList, setTagsList]: any = useState([]);
+  const [tagsList, setTagsList] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -16,7 +17,7 @@ const Tags = () => {
   const getAllTags = async () => {
     setTagsList([]);
     setLoading(true);
-    apiTags.getTagsService().then((response: any) => {
+    apiTags.getTagsService().then((response) => {
       if (response && Array.isArray(response)) {
         setTagsList(response);
       } else {
@@ -59,7 +60,7 @@ const Tags = () => {
           </Box>
           {!loading ? (
             <Box className="tags-list">
-              {tagsList?.map((tag: any) => (
+              {tagsList?.map((tag) => (
                 <SingleTags key={tag.id} tag={tag} />
               ))}
             </Box>

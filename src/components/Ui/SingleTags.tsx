@@ -1,7 +1,12 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import { Tag } from "../../shared/interfaces/tags.interface";
 
-const SingleTags = ({ tag }: any) => {
+interface TagChild {
+  tag: Tag
+}
+
+const SingleTags = ({ tag }: TagChild) => {
   return (
     <Box
       display={"flex"}

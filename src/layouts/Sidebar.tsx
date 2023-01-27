@@ -7,7 +7,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { setResultPage } from "../features/resultLayout";
-import { useDispatch } from "react-redux";
 import { useAppDispatch } from "../hooks/hook";
 
 const drawerWidth = 80;
@@ -19,7 +18,7 @@ interface Props {
 export default function ResponsiveDrawer(props: Props) {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { window }: any = props;
+  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -63,7 +62,7 @@ export default function ResponsiveDrawer(props: Props) {
           LOGO
         </Box>
         <Box display={"flex"} flexDirection={"column"} gap={"1.594rem"}>
-          {itemslist.map((route: any, index: number) => {
+          {itemslist.map((route, index) => {
             const { title, to, onclick } = route;
             return (
               <ListItem

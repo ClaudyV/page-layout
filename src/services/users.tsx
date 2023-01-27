@@ -3,7 +3,7 @@ import { handleError, handleResponse } from "./responseHandler";
 
 // Get all followers and Results
 const getAllFollowersAndResultsService = async (
-  page: any,
+  page: string,
   pageSize: string,
   keyword: string
 ) => {

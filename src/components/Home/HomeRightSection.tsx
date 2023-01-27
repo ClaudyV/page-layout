@@ -15,6 +15,7 @@ interface GetItems {
   page: string;
 }
 
+
 const HomeRightSection = ({ setTotalPageSize }: HomeRightSectionProps) => {
   const [tab, setTab] = useState("followers");
   const [allFollowing, setAllFollowing] = useState([]);
@@ -103,13 +104,13 @@ const HomeRightSection = ({ setTotalPageSize }: HomeRightSectionProps) => {
           <>
             {!followersLoading ? (
               <>
-                {items.map((follower: User) => (
+                {items.map((follower) => (
                   <UserSection key={follower.id} follower={follower} />
                 ))}
               </>
             ) : (
               <>
-                {Array.from(new Array(12)).map((item: any, index: number) => (
+                {Array.from(new Array(12)).map((item, index) => (
                   <Skeleton
                     key={index}
                     variant="rounded"
@@ -139,7 +140,7 @@ const HomeRightSection = ({ setTotalPageSize }: HomeRightSectionProps) => {
               </>
             ) : (
               <>
-                {Array.from(new Array(12)).map((item: any, index: number) => (
+                {Array.from(new Array(12)).map((item, index) => (
                   <Skeleton
                     key={index}
                     variant="rounded"

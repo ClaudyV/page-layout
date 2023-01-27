@@ -7,10 +7,13 @@ import SingleResult from "../components/Ui/SingleResult";
 import { apiFriends } from "../services/users";
 import { useLocation } from "react-router-dom";
 import useInfiniteLoading from "../utils/infiniteLoading";
-import { useDispatch } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { setResultPage } from "../features/resultLayout";
 import { useAppDispatch } from "../hooks/hook";
+
+interface GetItems {
+  page: string;
+}
 
 const Results = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +22,7 @@ const Results = () => {
   const location = useLocation();
   const [resultsLaoding, setResultLoading] = useState(false);
   const { items, hasMore, loadItems } = useInfiniteLoading({
-    getItems: async ({ page }: any) => {
+    getItems: async ({ page }: GetItems) => {
       /* API call */
       setResultLoading(true);
       const response = await apiFriends.getAllFollowersAndResultsService(
@@ -51,6 +54,7 @@ const Results = () => {
             <img
               className="mobile-top-rwd-img"
               src="/assets/img/arrow-back.svg"
+              alt="arrow"
             />
           </Box>
           <Box>
@@ -66,7 +70,7 @@ const Results = () => {
         >
           {!matches && (
             <Box display={"flex"} alignItems={"center"}>
-              <img src="/assets/img/arrow-back.svg" />
+              <img src="/assets/img/arrow-back.svg" alt="arrow" />
             </Box>
           )}
           <Box>
@@ -76,7 +80,7 @@ const Results = () => {
         {!resultsLaoding ? (
           <Box className={"result-layout"}>
             <Box className="result-list">
-              {items.map((result: any, index: any) => (
+              {items.map((result, index) => (
                 <SingleResult key={index} result={result} />
               ))}
             </Box>

@@ -1,12 +1,22 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import { User } from "../../shared/interfaces/user.interface";
 
-const SingleResult = ({result}:any) => {
+interface Result {
+  result: User;
+}
+
+const SingleResult = ({ result }: Result) => {
   return (
     <>
       <Box className="single-result-wrapper">
         <Box className="result-img">
-          <img className="result-img-rwd" src="/assets/img/dog.svg" loading="lazy" />
+          <img
+            className="result-img-rwd"
+            src="/assets/img/dog.svg"
+            loading="lazy"
+            alt="dog"
+          />
         </Box>
         <Box display={"flex"} flexDirection={"column"}>
           <Box>
