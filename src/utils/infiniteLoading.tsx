@@ -1,22 +1,23 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { User } from "../shared/interfaces/user.interface";
 
-const useInfiniteLoading = (props: any) => {
-  const { getItems } = props; /* 1 */
-  const [items, setItems]: any = useState([]);
+const useInfiniteLoading = (props: { getItems: any }) => {
+  const { getItems } = props;
+  const [items, setItems] = useState<User[]>([]);
   const [pageToLoad, setPageToLoad] = useState(1);
   const initialPageLoaded = useRef(false);
   const [hasMore, setHasMore] = useState(true);
 
-  const loadItems = async () => {
+  const loadItems = useCallback(async () => {
     const data = await getItems({
       page: pageToLoad ? pageToLoad : 1,
     });
     setHasMore(data.totalPages > pageToLoad);
-    if(Array.isArray(data.data)){
-      setItems((prevItems: any) => [...prevItems, ...data.data]);
+    if (Array.isArray(data.data)) {
+      setItems((prevItems) => [...prevItems, ...data.data]);
     }
     setPageToLoad(pageToLoad + 1);
-  };
+  }, [getItems, pageToLoad]);
 
   useEffect(() => {
     if (initialPageLoaded.current) {

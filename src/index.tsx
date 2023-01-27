@@ -5,14 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import Router from "./routes/Router";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import layoutReducer from './features/resultLayout'
-
-const store = configureStore({
-  reducer: {
-    layout: layoutReducer
-  },
-});
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

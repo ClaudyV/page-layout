@@ -2,63 +2,23 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Skeleton from "@mui/material/Skeleton";
 import { useNavigate } from "react-router-dom";
 import Results from "../../pages/Results";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../Ui/NavBar";
 import { setResultPage } from "../../features/resultLayout";
+import { PageSize } from "../Ui/PageSize";
+import { useAppSelector, useAppDispatch } from "../../hooks/hook";
 
-// Custom style for Page size Slider
-const PageSize = styled(Slider)({
-  color: "rgba(255, 255, 255, 0.3)",
-  height: 8,
-  "& .MuiSlider-track": {
-    border: "none",
-    background: "linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)",
-  },
-  "& .MuiSlider-thumb": {
-    height: 24,
-    width: 24,
-    backgroundColor: "#1B1B1B",
-    border: "6px solid #FFD25F",
-    "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
-      boxShadow: "inherit",
-    },
-    "&:before": {
-      display: "none",
-    },
-  },
-  "& .MuiSlider-valueLabel": {
-    lineHeight: 1.2,
-    fontSize: 12,
-    background: "unset",
-    padding: 0,
-    width: 32,
-    height: 32,
-    borderRadius: "50% 50% 50% 0",
-    backgroundColor: "#52af77",
-    transformOrigin: "bottom left",
-    transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-    "&:before": { display: "none" },
-    "&.MuiSlider-valueLabelOpen": {
-      transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-    },
-    "& > *": {
-      transform: "rotate(45deg)",
-    },
-  },
-});
+interface HomeLeftSectionProps {
+  totalPageSize: number;
+}
 
-const HomeLeftSection = ({ totalPageSize }: any) => {
-  const isShowResultPage = useSelector(
-    (state: any) => state.layout.value.showResultPage
-  );
-  const dispatch = useDispatch();
+const HomeLeftSection = ({ totalPageSize }: HomeLeftSectionProps) => {
+  const isShowResultPage = useAppSelector((state) => state.layout.value);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [pageSize, setPageSize] = useState<number>(30);
   const [keyword, setKeyword] = useState("");
@@ -250,7 +210,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                         flexDirection={"row"}
                         justifyContent={"space-between"}
                       >
-                        {measurements(totalPageSize).map((item: any, index) => (
+                        {measurements(totalPageSize).map((item, index) => (
                           <Typography key={index}>{item.value}</Typography>
                         ))}
                       </Box>
@@ -275,7 +235,7 @@ const HomeLeftSection = ({ totalPageSize }: any) => {
                   component={"button"}
                   className={"custom-button"}
                   onClick={() => {
-                    dispatch(setResultPage({ showResultPage: true }));
+                    dispatch(setResultPage(true));
                     searchResults();
                   }}
                 >

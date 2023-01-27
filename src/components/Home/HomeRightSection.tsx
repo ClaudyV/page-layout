@@ -1,19 +1,29 @@
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import UserSection from "../Ui/UserSection";
 import { apiFriends } from "../../services/users";
 import Skeleton from "@mui/material/Skeleton";
 import useInfiniteLoading from "../../utils/infiniteLoading";
+import { User } from "../../shared/interfaces/user.interface";
 
-const HomeRightSection = ({ setTotalPageSize }: any) => {
+interface HomeRightSectionProps {
+  setTotalPageSize: Dispatch<SetStateAction<number>>;
+}
+
+interface GetItems {
+  page: string;
+}
+
+
+const HomeRightSection = ({ setTotalPageSize }: HomeRightSectionProps) => {
   const [tab, setTab] = useState("followers");
   const [allFollowing, setAllFollowing] = useState([]);
   const [followersLoading, setFollowersLoading] = useState(false);
   const [followingLoading, setFollowigLoading] = useState(false);
 
   const { items, hasMore, loadItems } = useInfiniteLoading({
-    getItems: async ({ page }: any) => {
+    getItems: async ({ page }: GetItems) => {
       /* API call */
       setFollowersLoading(true);
       const response = await apiFriends.getAllFollowersAndResultsService(
@@ -38,7 +48,7 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
   const getAllFollowing = async (page: string, pageSize: string) => {
     setAllFollowing([]);
     setFollowigLoading(true);
-    apiFriends.getAllFollowingService(page, pageSize).then((response: any) => {
+    apiFriends.getAllFollowingService(page, pageSize).then((response) => {
       if (response && response.data) {
         setAllFollowing(response.data);
       } else {
@@ -94,13 +104,13 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
           <>
             {!followersLoading ? (
               <>
-                {items.map((followers: any) => (
-                  <UserSection key={followers.id} follower={followers} />
+                {items.map((follower) => (
+                  <UserSection key={follower.id} follower={follower} />
                 ))}
               </>
             ) : (
               <>
-                {Array.from(new Array(12)).map((item: any, index: number) => (
+                {Array.from(new Array(12)).map((item, index) => (
                   <Skeleton
                     key={index}
                     variant="rounded"
@@ -124,13 +134,13 @@ const HomeRightSection = ({ setTotalPageSize }: any) => {
           <>
             {!followingLoading ? (
               <>
-                {allFollowing.map((following: any) => (
+                {allFollowing.map((following: User) => (
                   <UserSection key={following.id} follower={following} />
                 ))}
               </>
             ) : (
               <>
-                {Array.from(new Array(12)).map((item: any, index: number) => (
+                {Array.from(new Array(12)).map((item, index) => (
                   <Skeleton
                     key={index}
                     variant="rounded"

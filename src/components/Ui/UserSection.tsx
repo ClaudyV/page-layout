@@ -1,7 +1,12 @@
 import { Avatar, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import { User } from "../../shared/interfaces/user.interface";
 
-const UserSection = ({ follower }: any) => {
+interface UserChild {
+  follower: User;
+}
+
+const UserSection = ({ follower }: UserChild) => {
   return (
     <Box
       display={"flex"}
