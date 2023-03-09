@@ -77,13 +77,14 @@ const Results = () => {
             <Typography className="results-title">Results</Typography>
           </Box>
         </Box>
-        {!resultsLaoding ? (
-          <Box className={"result-layout"}>
-            <Box className="result-list">
-              {items.map((result) => (
-                <SingleResult key={result.id} result={result} />
-              ))}
-            </Box>
+
+        <Box className={"result-layout"}>
+          <Box className="result-list">
+            {items.map((result) => (
+              <SingleResult key={result.id} result={result} />
+            ))}
+          </Box>
+          {!resultsLaoding && (
             <Box className={"more-section"}>
               {hasMore && (
                 <Box
@@ -95,10 +96,9 @@ const Results = () => {
                 </Box>
               )}
             </Box>
-          </Box>
-        ) : (
-          <>
-            <Box className="result-layout result-list">
+          )}
+          {resultsLaoding && (
+            <Box className="result-list">
               {Array.from(new Array(9)).map((item, index) => (
                 <Box key={index}>
                   <Skeleton
@@ -113,8 +113,8 @@ const Results = () => {
                 </Box>
               ))}
             </Box>
-          </>
-        )}
+          )}
+        </Box>
       </Box>
     </>
   );
